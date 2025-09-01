@@ -3,5 +3,5 @@ flask-sqlalchemy
 flask-migrate
 werkzeug
 gunicorn
-python-dotenv
 psycopg2-binary
+python-dotenv
