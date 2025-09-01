@@ -73,7 +73,7 @@ jobs:
                       <li>Reporting and analytics</li>
                   </ul>
                   
-                  <p><strong>Note:</strong> GitHub Pages only supports static content. The actual Flask application needs to be hosted on a different platform.</p>
+                  <p><strong>Note:</strong> GitHub Pages only supports static content. The actual Flask application is hosted on Heroku.</p>
               </div>
               
               <div style="text-align: center;">
@@ -84,16 +84,10 @@ jobs:
               </div>
               
               <div class="content">
-                  <h2>How to Deploy the Flask App</h2>
-                  <p>To run this application, you need to deploy it to a platform that supports Python/Flask:</p>
-                  <ol>
-                      <li>Heroku (easiest for beginners)</li>
-                      <li>PythonAnywhere</li>
-                      <li>Railway.app</li>
-                      <li>Google Cloud Platform</li>
-                      <li>AWS Elastic Beanstalk</li>
-                  </ol>
-                  <p>Check the README.md file in the repository for detailed deployment instructions.</p>
+                  <h2>Default Login Credentials</h2>
+                  <p>Username: <code>admin</code></p>
+                  <p>Password: <code>secure-admin-password-here</code></p>
+                  <p><em>Please change these after your first login!</em></p>
               </div>
           </body>
           </html>
