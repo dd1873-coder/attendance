@@ -17,23 +17,84 @@ jobs:
       
       - name: Create landing page
         run: |
-          # Create a simple landing page
           cat > index.html << 'EOF'
           <!DOCTYPE html>
-          <html>
+          <html lang="en">
           <head>
-              <title>Attendance System</title>
+              <meta charset="UTF-8">
+              <meta name="viewport" content="width=device-width, initial-scale=1.0">
+              <title>Attendance Management System</title>
               <style>
-                  body { font-family: Arial, sans-serif; text-align: center; padding: 50px; }
-                  .btn { display: inline-block; padding: 15px 30px; background: #007bff; 
-                         color: white; text-decoration: none; border-radius: 5px; margin-top: 20px; }
+                  body { 
+                      font-family: Arial, sans-serif; 
+                      max-width: 800px; 
+                      margin: 0 auto; 
+                      padding: 20px;
+                      line-height: 1.6;
+                  }
+                  .header {
+                      text-align: center;
+                      margin-bottom: 30px;
+                  }
+                  .btn {
+                      display: inline-block;
+                      padding: 12px 24px;
+                      background: #007bff;
+                      color: white;
+                      text-decoration: none;
+                      border-radius: 5px;
+                      margin: 10px 5px;
+                      transition: background 0.3s;
+                  }
+                  .btn:hover {
+                      background: #0056b3;
+                  }
+                  .content {
+                      background: #f9f9f9;
+                      padding: 20px;
+                      border-radius: 5px;
+                      margin: 20px 0;
+                  }
               </style>
           </head>
           <body>
-              <h1>Attendance Management System</h1>
-              <p>This Flask app is not hosted on GitHub Pages (static only).</p>
-              <p>Check the repository for setup instructions.</p>
-              <a href="https://github.com/yourusername/yourrepo" class="btn">View on GitHub</a>
+              <div class="header">
+                  <h1>Attendance Management System</h1>
+                  <p>A Flask application for tracking attendance</p>
+              </div>
+              
+              <div class="content">
+                  <h2>About This Application</h2>
+                  <p>This is a Flask-based attendance system with the following features:</p>
+                  <ul>
+                      <li>User authentication and authorization</li>
+                      <li>Attendance tracking with location data</li>
+                      <li>Admin dashboard for user management</li>
+                      <li>Reporting and analytics</li>
+                  </ul>
+                  
+                  <p><strong>Note:</strong> GitHub Pages only supports static content. The actual Flask application needs to be hosted on a different platform.</p>
+              </div>
+              
+              <div style="text-align: center;">
+                  <h3>Application Links</h3>
+                  <a href="https://your-app-name.herokuapp.com" class="btn">Live Application</a>
+                  <a href="https://github.com/yourusername/your-repo" class="btn">Source Code</a>
+                  <a href="https://github.com/yourusername/your-repo/blob/main/README.md" class="btn">Setup Instructions</a>
+              </div>
+              
+              <div class="content">
+                  <h2>How to Deploy the Flask App</h2>
+                  <p>To run this application, you need to deploy it to a platform that supports Python/Flask:</p>
+                  <ol>
+                      <li>Heroku (easiest for beginners)</li>
+                      <li>PythonAnywhere</li>
+                      <li>Railway.app</li>
+                      <li>Google Cloud Platform</li>
+                      <li>AWS Elastic Beanstalk</li>
+                  </ol>
+                  <p>Check the README.md file in the repository for detailed deployment instructions.</p>
+              </div>
           </body>
           </html>
           EOF
@@ -42,13 +103,6 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: '.'
-          # Exclude Python files from the deployment
-          ignore_files: |
-            app.py
-            requirements.txt
-            migrations/
-            templates/
-            *.db
 
   deploy:
     environment:
