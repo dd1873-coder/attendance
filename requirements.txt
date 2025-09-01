@@ -1,4 +1,7 @@
 flask
-flask_sqlalchemy
+flask-sqlalchemy
+flask-migrate
 werkzeug
-flask_migrate
+gunicorn
+python-dotenv
+psycopg2-binary
