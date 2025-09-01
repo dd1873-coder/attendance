@@ -1,21 +1,38 @@
-name: Deploy Flask App to Heroku
+name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [ main ]
-    paths:
-      - 'app.py'
-      - 'requirements.txt'
-      - 'templates/**'
-      - 'migrations/**'
+    branches: [main]
+
+permissions:
+  pages: write
+  id-token: write
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: akhileshns/heroku-deploy@v3.12.12
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Create index.html if missing
+        run: |
+          if [ ! -f "index.html" ]; then
+            echo '<!DOCTYPE html><html><head><title>My Site</title></head><body><h1>Hello GitHub Pages!</h1></body></html>' > index.html
+          fi
+      
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: "attendance-app"
-          heroku_email: "dd4798029.com"
+          path: '.'
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
