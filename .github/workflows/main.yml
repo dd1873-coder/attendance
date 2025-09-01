@@ -15,16 +15,40 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       
-      - name: Create index.html if missing
+      - name: Create landing page
         run: |
-          if [ ! -f "index.html" ]; then
-            echo '<!DOCTYPE html><html><head><title>My Site</title></head><body><h1>Hello GitHub Pages!</h1></body></html>' > index.html
-          fi
+          # Create a simple landing page
+          cat > index.html << 'EOF'
+          <!DOCTYPE html>
+          <html>
+          <head>
+              <title>Attendance System</title>
+              <style>
+                  body { font-family: Arial, sans-serif; text-align: center; padding: 50px; }
+                  .btn { display: inline-block; padding: 15px 30px; background: #007bff; 
+                         color: white; text-decoration: none; border-radius: 5px; margin-top: 20px; }
+              </style>
+          </head>
+          <body>
+              <h1>Attendance Management System</h1>
+              <p>This Flask app is not hosted on GitHub Pages (static only).</p>
+              <p>Check the repository for setup instructions.</p>
+              <a href="https://github.com/yourusername/yourrepo" class="btn">View on GitHub</a>
+          </body>
+          </html>
+          EOF
       
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: '.'
+          # Exclude Python files from the deployment
+          ignore_files: |
+            app.py
+            requirements.txt
+            migrations/
+            templates/
+            *.db
 
   deploy:
     environment:
