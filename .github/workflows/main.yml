@@ -15,83 +15,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       
-      - name: Create landing page
+      - name: Create index.html if missing
         run: |
-          cat > index.html << 'EOF'
-          <!DOCTYPE html>
-          <html lang="en">
-          <head>
-              <meta charset="UTF-8">
-              <meta name="viewport" content="width=device-width, initial-scale=1.0">
-              <title>Attendance Management System</title>
-              <style>
-                  body { 
-                      font-family: Arial, sans-serif; 
-                      max-width: 800px; 
-                      margin: 0 auto; 
-                      padding: 20px;
-                      line-height: 1.6;
-                  }
-                  .header {
-                      text-align: center;
-                      margin-bottom: 30px;
-                  }
-                  .btn {
-                      display: inline-block;
-                      padding: 12px 24px;
-                      background: #007bff;
-                      color: white;
-                      text-decoration: none;
-                      border-radius: 5px;
-                      margin: 10px 5px;
-                      transition: background 0.3s;
-                  }
-                  .btn:hover {
-                      background: #0056b3;
-                  }
-                  .content {
-                      background: #f9f9f9;
-                      padding: 20px;
-                      border-radius: 5px;
-                      margin: 20px 0;
-                  }
-              </style>
-          </head>
-          <body>
-              <div class="header">
-                  <h1>Attendance Management System</h1>
-                  <p>A Flask application for tracking attendance</p>
-              </div>
-              
-              <div class="content">
-                  <h2>About This Application</h2>
-                  <p>This is a Flask-based attendance system with the following features:</p>
-                  <ul>
-                      <li>User authentication and authorization</li>
-                      <li>Attendance tracking with location data</li>
-                      <li>Admin dashboard for user management</li>
-                      <li>Reporting and analytics</li>
-                  </ul>
-                  
-                  <p><strong>Note:</strong> GitHub Pages only supports static content. The actual Flask application is hosted on Heroku.</p>
-              </div>
-              
-              <div style="text-align: center;">
-                  <h3>Application Links</h3>
-                  <a href="https://your-app-name.herokuapp.com" class="btn">Live Application</a>
-                  <a href="https://github.com/yourusername/your-repo" class="btn">Source Code</a>
-                  <a href="https://github.com/yourusername/your-repo/blob/main/README.md" class="btn">Setup Instructions</a>
-              </div>
-              
-              <div class="content">
-                  <h2>Default Login Credentials</h2>
-                  <p>Username: <code>admin</code></p>
-                  <p>Password: <code>secure-admin-password-here</code></p>
-                  <p><em>Please change these after your first login!</em></p>
-              </div>
-          </body>
-          </html>
-          EOF
+          if [ ! -f "index.html" ]; then
+            echo '<!DOCTYPE html><html><head><title>My Site</title></head><body><h1>Hello GitHub Pages!</h1></body></html>' > index.html
+          fi
       
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
