@@ -15,10 +15,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       
-      - name: Create index.html if missing
+      - name: Create login.html if missing
         run: |
-          if [ ! -f "index.html" ]; then
-            echo '<!DOCTYPE html><html><head><title>My Site</title></head><body><h1>Hello GitHub Pages!</h1></body></html>' > index.html
+          if [ ! -f "login.html" ]; then
+            echo '<!DOCTYPE html><html><head><title>My Site</title></head><body><h1>Hello GitHub Pages!</h1></body></html>' > login.html
           fi
       
       - name: Upload artifact
